@@ -1,1 +1,6 @@
 * text=lf
+public/sponsors/* merge=ours
+public/logo.png merge=ours
+public/favicon.ico merge=ours
+public/favicon-32x32.png merge=ours
+public/favicon-16x16.png merge=ours
