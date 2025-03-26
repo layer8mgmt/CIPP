@@ -18,7 +18,6 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { Logo } from "../components/logo";
 import { useSettings } from "../hooks/use-settings";
 import { paths } from "../paths";
 import { AccountPopover } from "./account-popover";
@@ -104,17 +103,6 @@ export const TopNav = (props) => {
             />
           }
         >
-          <Box
-            component={NextLink}
-            href={paths.index}
-            sx={{
-              display: "inline-flex",
-              height: 24,
-              width: 24,
-            }}
-          >
-            <Logo />
-          </Box>
           {!mdDown && <CippTenantSelector refreshButton={true} tenantButton={true} />}
           {mdDown && (
             <IconButton color="inherit" onClick={onNavOpen}>
