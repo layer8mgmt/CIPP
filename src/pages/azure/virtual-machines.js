@@ -154,12 +154,18 @@ const Page = () => {
             <Card>
               <CardContent>
                 <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
-                  <FormControl sx={{ minWidth: 200 }}>
+                  <FormControl sx={{ minWidth: 250 }}>
                     <InputLabel>Status Filter</InputLabel>
                     <Select
                       value={statusFilter}
                       label="Status Filter"
                       onChange={handleStatusFilterChange}
+                      sx={{
+                        '& .MuiSelect-select': {
+                          py: 1.5,
+                          fontSize: '0.875rem',
+                        },
+                      }}
                     >
                       <MenuItem value="all">All VMs</MenuItem>
                       <MenuItem value="Running">Running</MenuItem>

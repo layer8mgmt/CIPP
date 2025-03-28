@@ -23,21 +23,6 @@ export const nativeMenuItems = [
     ),
   },
   {
-    title: "Azure",
-    type: "header",
-    icon: (
-      <SvgIcon>
-        <Cloud />
-      </SvgIcon>
-    ),
-    items: [
-      {
-        title: "Virtual Machines",
-        path: "/azure/virtual-machines",
-      },
-    ],
-  },
-  {
     title: "Identity Management",
     type: "header",
     icon: (
@@ -181,6 +166,21 @@ export const nativeMenuItems = [
             path: "/tenant/reports/application-consent",
           },
         ],
+      },
+    ],
+  },
+  {
+    title: "Azure",
+    type: "header",
+    icon: (
+      <SvgIcon>
+        <Cloud />
+      </SvgIcon>
+    ),
+    items: [
+      {
+        title: "Virtual Machines",
+        path: "/azure/virtual-machines",
       },
     ],
   },
