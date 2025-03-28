@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import {
   Box,
   Container,
@@ -17,6 +18,10 @@ import {
   TableRow,
   Paper,
   Chip,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import StopIcon from "@mui/icons-material/Stop";
@@ -59,7 +64,25 @@ const mockVMs = [
 ];
 
 const Page = () => {
+  const router = useRouter();
   const [vms, setVMs] = useState(mockVMs);
+  const [filteredVMs, setFilteredVMs] = useState(mockVMs);
+  const [statusFilter, setStatusFilter] = useState("all");
+
+  useEffect(() => {
+    const { status } = router.query;
+    if (status) {
+      setStatusFilter(status);
+    }
+  }, [router.query]);
+
+  useEffect(() => {
+    if (statusFilter === "all") {
+      setFilteredVMs(vms);
+    } else {
+      setFilteredVMs(vms.filter(vm => vm.status === statusFilter));
+    }
+  }, [statusFilter, vms]);
 
   const handleStart = (id) => {
     setVMs(vms.map(vm => 
@@ -87,6 +110,16 @@ const Page = () => {
 
   const handleDelete = (id) => {
     setVMs(vms.filter(vm => vm.id !== id));
+  };
+
+  const handleStatusFilterChange = (event) => {
+    const newStatus = event.target.value;
+    setStatusFilter(newStatus);
+    if (newStatus === "all") {
+      router.push("/azure/virtual-machines");
+    } else {
+      router.push(`/azure/virtual-machines?status=${newStatus}`);
+    }
   };
 
   const getStatusColor = (status) => {
@@ -120,6 +153,20 @@ const Page = () => {
             </Stack>
             <Card>
               <CardContent>
+                <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+                  <FormControl sx={{ minWidth: 200 }}>
+                    <InputLabel>Status Filter</InputLabel>
+                    <Select
+                      value={statusFilter}
+                      label="Status Filter"
+                      onChange={handleStatusFilterChange}
+                    >
+                      <MenuItem value="all">All VMs</MenuItem>
+                      <MenuItem value="Running">Running</MenuItem>
+                      <MenuItem value="Stopped">Stopped</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Stack>
                 <TableContainer component={Paper}>
                   <Table>
                     <TableHead>
@@ -135,7 +182,7 @@ const Page = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {vms.map((vm) => (
+                      {filteredVMs.map((vm) => (
                         <TableRow key={vm.id}>
                           <TableCell>{vm.name}</TableCell>
                           <TableCell>

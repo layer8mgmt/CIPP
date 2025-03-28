@@ -34,11 +34,6 @@ export const nativeMenuItems = [
       {
         title: "Virtual Machines",
         path: "/azure/virtual-machines",
-        items: [
-          { title: "All VMs", path: "/azure/virtual-machines" },
-          { title: "Running VMs", path: "/azure/virtual-machines?status=running" },
-          { title: "Stopped VMs", path: "/azure/virtual-machines?status=stopped" },
-        ],
       },
     ],
   },
