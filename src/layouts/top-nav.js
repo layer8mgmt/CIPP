@@ -5,7 +5,6 @@ import Bars3Icon from "@heroicons/react/24/outline/Bars3Icon";
 import MoonIcon from "@heroicons/react/24/outline/MoonIcon";
 import SunIcon from "@heroicons/react/24/outline/SunIcon";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import CloudIcon from "@mui/icons-material/Cloud";
 import {
   Box,
   Divider,
@@ -18,8 +17,6 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  Menu,
-  MenuItem,
 } from "@mui/material";
 import { useSettings } from "../hooks/use-settings";
 import { paths } from "../paths";
@@ -36,7 +33,6 @@ export const TopNav = (props) => {
   const { onNavOpen } = props;
   const settings = useSettings();
   const mdDown = useMediaQuery((theme) => theme.breakpoints.down("md"));
-  const [azureAnchorEl, setAzureAnchorEl] = useState(null);
   const handleThemeSwitch = useCallback(() => {
     const themeName = settings.currentTheme?.value === "light" ? "dark" : "light";
     settings.handleUpdate({
@@ -56,17 +52,6 @@ export const TopNav = (props) => {
 
   const open = Boolean(anchorEl);
   const id = open ? "bookmark-popover" : undefined;
-
-  const handleAzureClick = (event) => {
-    setAzureAnchorEl(event.currentTarget);
-  };
-
-  const handleAzureClose = () => {
-    setAzureAnchorEl(null);
-  };
-
-  const openAzure = Boolean(azureAnchorEl);
-  const azureId = openAzure ? "azure-menu" : undefined;
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -118,24 +103,6 @@ export const TopNav = (props) => {
             />
           }
         >
-          <IconButton color="inherit" onClick={handleAzureClick}>
-            <SvgIcon color="action" fontSize="small">
-              <CloudIcon />
-            </SvgIcon>
-          </IconButton>
-          <Menu
-            id={azureId}
-            anchorEl={azureAnchorEl}
-            open={openAzure}
-            onClose={handleAzureClose}
-            MenuListProps={{
-              "aria-labelledby": "azure-button",
-            }}
-          >
-            <MenuItem onClick={handleAzureClose} component={NextLink} href="/azure/virtual-machines">
-              Virtual Machines
-            </MenuItem>
-          </Menu>
           {!mdDown && <CippTenantSelector refreshButton={true} tenantButton={true} />}
           {mdDown && (
             <IconButton color="inherit" onClick={onNavOpen}>

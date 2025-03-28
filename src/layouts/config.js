@@ -8,6 +8,7 @@ import {
   MailOutline,
   Shield,
   ShieldOutlined,
+  Storage,
 } from "@mui/icons-material";
 import { SvgIcon } from "@mui/material";
 
@@ -20,6 +21,26 @@ export const nativeMenuItems = [
         <HomeIcon />
       </SvgIcon>
     ),
+  },
+  {
+    title: "Azure",
+    type: "header",
+    icon: (
+      <SvgIcon>
+        <Cloud />
+      </SvgIcon>
+    ),
+    items: [
+      {
+        title: "Virtual Machines",
+        path: "/azure/virtual-machines",
+        items: [
+          { title: "All VMs", path: "/azure/virtual-machines" },
+          { title: "Running VMs", path: "/azure/virtual-machines?status=running" },
+          { title: "Stopped VMs", path: "/azure/virtual-machines?status=stopped" },
+        ],
+      },
+    ],
   },
   {
     title: "Identity Management",
