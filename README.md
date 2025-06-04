@@ -8,6 +8,3 @@ This project is a way to help you with administration, with user management, and
 For more information, we recommend checking out our website [here](https://cipp.app)  
 For detailed documentation about features of CIPP, please check out our [documentation.](https://docs.cipp.app)
 
-# Our sponsors
-
-You can find our sponsors [here.](https://docs.cipp.app/#our-sponsors)
